@@ -10,12 +10,16 @@
 -- =====================================================
 -- Purpose: Store break data from Glide break tracking app
 -- Glide app will write to this table
+--
+-- GLIDE FIELD MAPPING:
+--   Glide "Start time" → break_start
+--   Glide "End time"   → break_end
 -- =====================================================
 
 CREATE TABLE IF NOT EXISTS breaks (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    break_start TIMESTAMPTZ NOT NULL,
-    break_end TIMESTAMPTZ NOT NULL,
+    break_start TIMESTAMPTZ NOT NULL,    -- Maps to Glide "Start time"
+    break_end TIMESTAMPTZ NOT NULL,      -- Maps to Glide "End time"
     operator TEXT,                        -- Optional: who took the break
     break_type TEXT,                      -- Optional: lunch, coffee, etc.
     created_at TIMESTAMPTZ DEFAULT NOW(),
